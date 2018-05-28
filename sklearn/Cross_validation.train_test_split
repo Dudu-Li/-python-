@@ -1,0 +1,25 @@
+使用Sklearn-train_test_split 划分数据集
+使用sklearn.model_selection.train_test_split/sklearn.Cross_validation.train_test_split可以在数据集上随机划分出一定比例的训练集和测试集
+
+1.使用形式为：
+
+1 from sklearn.model_selection import train_test_split 
+2 X_train, X_test, y_train, y_test = train_test_split(train_data,train_target,test_size=0.2, random_state=0)
+2.参数解释：
+
+train_data：样本特征集
+
+train_target：样本的标签集
+
+test_size：样本占比，测试集占数据集的比重，如果是整数的话就是样本的数量
+
+random_state：是随机数的种子。在同一份数据集上，相同的种子产生相同的结果，不同的种子产生不同的划分结果
+
+X_train,y_train:构成了训练集
+
+X_test,y_test：构成了测试集
+
+stratify是为了保持split前类的分布。比如有100个数据，80个属于A类，20个属于B类。如果train_test_split(... test_size=0.25, stratify = y_all), 那么split之后数据如下： 
+training: 75个数据，其中60个属于A类，15个属于B类。 
+testing: 25个数据，其中20个属于A类，5个属于B类。 
+用了stratify参数，training集和testing集的类的比例是 A：B= 4：1，等同于split前的比例（80：20）。通常在这种类分布不平衡的情况下会用到stratify。
